@@ -1,4 +1,46 @@
-overeno-php-api
-===============
+heureka-overeno-php-api
+=======================
 
-Heureka overeno service API for PHP
+[Heureka Overeno](http://overeno.heureka.cz/) service API for PHP. 
+
+Usage
+-----
+
+Inicialize Service using [your API key](http://sluzby.heureka.cz/sluzby/certifikat-spokojenosti/):
+
+    require_once 'heureka-overeno-php-api/src/HeurekaOvereno.php';
+
+    $overeno = new HeurekaOvereno('681b8820eeadad7aeb5ca682c455frfg');
+      
+SK shops should initialize Heureka Overeno service with second parameter HeurekaOvereno::LANGUAGE_SK:
+      
+    $overeno = new HeurekaOvereno('681b8820eeadad7aeb5ca682c455frfg', HeurekaOvereno::LANGUAGE_SK);
+      
+Set customer email:
+
+    $overeno->setEmail('jan.novak@example.com');
+  
+Add product from order - encoded in UTF8 if possible. Service can handle WINDOWS-1250 and ISO-8859-2 if necessary  
+  
+    $overeno->addProduct('Nokia N95');
+
+Or add multiple products:
+
+    // array $products is populated elsewhere by shop application
+    foreach ($products as $product) {
+      $overeno->addProduct($product);
+    }
+    
+or/and add products using [item ID](http://sluzby.heureka.cz/napoveda/xml-feed/#ITEM_ID):
+
+    $overeno->addProductItemId('B1234');
+  
+Provide order ID - BIGINT (0 - 18446744073709551615):
+    
+    $overeno->addOrderId(123456);
+  
+Send the request:
+
+    $overeno->send();
+    
+[View all examples](https://github.com/heureka/heureka-overeno-php-api/tree/master/examples)
