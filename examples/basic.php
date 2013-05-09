@@ -3,8 +3,8 @@
 require_once 'HeurekaOvereno.php';
 
 try {
-    $overeno = new HeurekaOvereno('681b8820eeadad7aeb5ca682c455frfg' /* USE your own API key */);
-    // SK shops should use $overeno = new HeurekaOvereno('681b8820eeadad7aeb5ca682c455frfg', HeurekaOvereno::LANGUAGE_SK);
+    $overeno = new HeurekaOvereno('9b011a7086cfc0210cccfbdb7e51aac8' /* USE your own API key */);
+    // SK shops should use $overeno = new HeurekaOvereno('9b011a7086cfc0210cccfbdb7e51aac8', HeurekaOvereno::LANGUAGE_SK);
     
     // set customer email - MANDATORY
     $overeno->setEmail('jan.novak@example.com');

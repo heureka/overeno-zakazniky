@@ -99,8 +99,22 @@ class HeurekaOvereno
      */
     public function __construct($apiKey, $languageId = self::LANGUAGE_CZ)
     {
-        $this->apiKey = $apiKey;
+        $this->setApiKey($apiKey);
         $this->languageId = $languageId;
+    }
+    
+    /**
+     * Sets API key and check well-formedness
+     * 
+     * @param string $apiKey Shop api key
+     */
+    public function setApiKey($apiKey)
+    {
+        if (preg_match('(^[0-9abcdef]{32}$)', $apiKey)) {
+            $this->apiKey = $apiKey;
+        } else {
+            throw new OverflowException('Api key ' . $apiKey . ' is invalid.');
+        }
     }
 
     /**
