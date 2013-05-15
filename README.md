@@ -6,7 +6,7 @@ heureka-overeno-php-api
 Usage
 -----
 
-Inicialize Service using [your API key](http://sluzby.heureka.cz/sluzby/certifikat-spokojenosti/):
+Initialize Service using [your API key](http://sluzby.heureka.cz/sluzby/certifikat-spokojenosti/):
 
     require_once 'heureka-overeno-php-api/src/HeurekaOvereno.php';
 
