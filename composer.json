@@ -1,0 +1,17 @@
+{
+    "name": "heureka/overenozakazniky",
+    "description": "Heureka overeno service API",
+    "authors": [
+        {
+            "name": "Heureka.cz",
+            "email": "podpora@heureka.cz"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.1.0"
+    },
+    "autoload": {
+        "files": ["src/HeurekaOvereno.php"]
+    }
+}
