@@ -10,12 +10,12 @@ Initialize Service using [your API key](http://sluzby.heureka.cz/sluzby/certifik
 
 ```php
 require_once 'heureka-overeno-php-api/src/HeurekaOvereno.php';
-$overeno = new HeurekaOvereno('9b011a7086cfc0210cccfbdb7e51aac8');
+$overeno = new HeurekaOvereno('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
 ```
       
 SK shops should initialize Heureka Overeno service with second parameter HeurekaOvereno::LANGUAGE_SK:
       
-    $overeno = new HeurekaOvereno('9b011a7086cfc0210cccfbdb7e51aac8', HeurekaOvereno::LANGUAGE_SK);
+    $overeno = new HeurekaOvereno('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', HeurekaOvereno::LANGUAGE_SK);
       
 Set customer email:
 
