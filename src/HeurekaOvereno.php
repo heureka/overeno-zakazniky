@@ -234,6 +234,52 @@ class HeurekaOvereno
         }
     }
 
+	/**
+	 * @author VikiJel <https://github.com/vikijel>
+	 * 	 	
+     * @param int $showWidget Orientation, possible values:
+     *                        21 = left
+     *                        22 = right
+     * @param int $setTopPos  Position offset from top in pixels
+     *
+     * @return string
+     */
+    public function getWidgetScript($showWidget = 21, $setTopPos = 60)
+    {
+        $showWidget = (int) $showWidget;
+        $setTopPos  = (int) $setTopPos;
+        $domain     = 'heureka.' . (self::LANGUAGE_CZ == (int) $this->languageId ? 'cz' : 'sk');
+        $script     = array();
+        $script[]   = '<!-- HeurekaOvereno-widget:start -->';
+        $script[]   = '<script type="text/javascript">';
+        $script[]   = '//<![CDATA[';
+        $script[]   = 'var _hwq = _hwq || [];';
+        $script[]   = "_hwq.push(['setKey', '{$this->apiKey}']);";
+
+        if ($setTopPos)
+        {
+            $script[] = "_hwq.push(['setTopPos', '{$setTopPos}']);";
+        }
+
+        if ($showWidget)
+        {
+            $script[] = "_hwq.push(['showWidget', '{$showWidget}']);";
+        }
+
+        $script[] = "(function(){";
+        $script[] = "var ho = document.createElement('script');";
+        $script[] = "ho.type = 'text/javascript';";
+        $script[] = "ho.async = true;";
+        $script[] = "ho.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.{$domain}/direct/i/gjs.php?n=wdgt&sak={$this->apiKey}';";
+        $script[] = "var s = document.getElementsByTagName('script')[0];";
+        $script[] = "s.parentNode.insertBefore(ho, s);";
+        $script[] = '})();';
+        $script[] = '//]]>';
+        $script[] = '</script>';
+        $script[] = '<!-- HeurekaOvereno-widget:end -->';
+
+        return implode("\n", $script);
+    }
 }
 
 /**
