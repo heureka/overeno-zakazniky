@@ -1,17 +1,22 @@
 {
     "name": "heureka/overenozakazniky",
-    "description": "Heureka overeno service API",
+    "description": "Heureka 'Ověřeno zákazníky' service API",
     "authors": [
         {
             "name": "Heureka.cz",
             "email": "podpora@heureka.cz"
         }
     ],
-    "minimum-stability": "stable",
     "require": {
-        "php": ">=5.1.0"
+        "php": ">=5.4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.4.0",
+        "mockery/mockery": "~0.9.4"
     },
     "autoload": {
-        "files": ["src/HeurekaOvereno.php"]
+        "psr-4": {
+            "Heureka\\": ["src/", "tests"]
+        }
     }
 }

@@ -47,7 +47,7 @@ $overeno->addProductItemId('B1234');
 Provide order ID - BIGINT (0 - 18446744073709551615):
 
 ```php
-$overeno->addOrderId(123456);
+$overeno->setOrderId(123456);
 ```
   
 Send the request:
