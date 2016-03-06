@@ -1,7 +1,7 @@
-heureka-overeno-php-api
+Heureka ověřeno PHP API
 =======================
 
-[Heureka Overeno](http://overeno.heureka.cz/) service API for PHP. 
+[Heureka Ověřeno](http://overeno.heureka.cz/) service API for PHP. 
 
 Usage
 -----
@@ -9,13 +9,13 @@ Usage
 Initialize Service using [your API key](http://sluzby.heureka.cz/sluzby/certifikat-spokojenosti/):
 
 ```php
-require_once 'heureka-overeno-php-api/src/HeurekaOvereno.php';
-$overeno = new HeurekaOvereno('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+require_once __DIR__ . '/vendor/autoload.php';
+$overeno = new \Heureka\Overeno('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
 ```
       
-SK shops should initialize Heureka Overeno service with second parameter HeurekaOvereno::LANGUAGE_SK:
+SK shops should initialize Heureka Overeno service with second parameter \Heureka\Overeno::LANGUAGE_SK:
       
-    $overeno = new HeurekaOvereno('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', HeurekaOvereno::LANGUAGE_SK);
+    $overeno = new \Heureka\Overeno('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', \Heureka\Overeno::LANGUAGE_SK);
       
 Set customer email:
 
