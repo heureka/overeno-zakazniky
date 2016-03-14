@@ -3,35 +3,34 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 try {
-    $testingApiKey = '9b011a7086cfc0210cccfbdb7e51aac8'; // USE your own API key!
+    // Use your own API key here. And keep it a secret!
+    $apiKey = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx';
+    $options = [
+        // Use \Heureka\ShopCertification::HEUREKA_SK if your e-shop is on heureka.sk
+        'service' => \Heureka\ShopCertification::HEUREKA_CZ,
+    ];
 
-    $language = \Heureka\Overeno::LANGUAGE_CZ; // you can use LANGUAGE_SK as well
+    $shopCertification = new \Heureka\ShopCertification($apiKey, $options);
 
-    $overeno = new \Heureka\Overeno($testingApiKey, $language);
+    // Set customer email - it is MANDATORY.
+    $shopCertification->setEmail('jan.novak@example.com');
 
-    // set customer email - MANDATORY
-    $overeno->setEmail('jan.novak@example.com');
+    // Set order ID - it helps you track your customers' orders in Heureka shop administration.
+    $shopCertification->setOrderId(1597884);
 
-    /**
-     * Products names should be provided in UTF-8 encoding. The service can handle
-     * WINDOWS-1250 and ISO-8859-2 if necessary
-     */
-    $overeno->addProduct('Nokia N95');
+    // Add products using ITEM_ID (your products ID).
+    $shopCertification->addProductItemId('165899412');
+    $shopCertification->addProductItemId('998884614');
 
-    /**
-     * And/or add products using item ID
-     */
-    $overeno->addProductItemId('B1234');
+    // And finally send the order to our service.
+    $shopCertification->logOrder();
 
-    // add order ID - BIGINT (0 - 18446744073709551615)
-    $overeno->setOrderId(123456);
+    // Everything went well - we are done here.
+    // You can redirect the customer to some nice page and thank him for the order. :-)
 
-    // send request
-    if ($overeno->send()) {
-        print('Success');
-    }
-
-} catch (\Heureka\Overeno\Exception $e) {
-    // handle errors
-    print $e->getMessage();
+} catch (\Heureka\ShopCertification\Exception $e) {
+    // Something unexpected happened.
+    // We can print the message for testing purposes only,
+    // DO NOT ever do that on your production environment.
+    var_dump($e->getMessage());
 }

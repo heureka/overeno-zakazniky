@@ -1,59 +1,56 @@
-Heureka ověřeno PHP API
-=======================
+Heureka 'Ověřeno zákazníky' PHP API
+===================================
 
-[Heureka Ověřeno](http://overeno.heureka.cz/) service API for PHP. 
+[Heureka Ověřeno zákazníky](http://overeno.heureka.cz/) (ShopCertification) service API client implementation for PHP.
+
+Examples
+--------
+
+You can check working examples in the folder `examples` of this repository.
 
 Usage
 -----
 
-Initialize Service using [your API key](http://sluzby.heureka.cz/sluzby/certifikat-spokojenosti/):
+Initialize class `Heureka\ShopCertification` using
+[your API key](http://sluzby.heureka.cz/sluzby/certifikat-spokojenosti/):
 
 ```php
 require_once __DIR__ . '/vendor/autoload.php';
-$overeno = new \Heureka\Overeno('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+
+$shopCertification = new \Heureka\ShopCertification('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
 ```
-      
-SK shops should initialize Heureka Overeno service with second parameter \Heureka\Overeno::LANGUAGE_SK:
-      
-    $overeno = new \Heureka\Overeno('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', \Heureka\Overeno::LANGUAGE_SK);
-      
-Set customer email:
+
+**Keep in mind that your API key is only yours and it is supposed to be a secret.** Never post your API key to anyone,
+never put it into JavaScript or anywhere else. It should live on your server only. If you feel the need to break this
+rule then you are doing something wrong - please consult our supported department prior to any actions.
+
+SK shops should initialize the class with a service parameter in the options:
 
 ```php
-$overeno->setEmail('jan.novak@example.com');
+$options = ['service' => \Heureka\ShopCertification::HEUREKA_SK];
+$shopCertification = new \Heureka\ShopCertification('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', $options);
 ```
-  
-Add product from order - encoded in UTF8 if possible. Service can handle WINDOWS-1250 and ISO-8859-2 if necessary  
+
+Set the customer e-mail address:
 
 ```php
-$overeno->addProduct('Nokia N95');
+$shopCertification->setEmail('jan.novak@muj-eshop.cz');
 ```
 
-Or add multiple products:
-
-```php
-// array $products is populated elsewhere by shop application
-foreach ($products as $product) {
-  $overeno->addProduct($product);
-}
-```
-    
-or/and add products using [item ID](http://sluzby.heureka.cz/napoveda/xml-feed/#ITEM_ID):
+Set the customer's order ID (only integers are allowed):
 
 ```php
-$overeno->addProductItemId('B1234');
+$shopCertification->setOrderId(15195618851564);
 ```
-  
-Provide order ID - BIGINT (0 - 18446744073709551615):
+
+Add products which the customer ordered:
+```php
+$shopCertification->addProductItemId('B1234');
+$shopCertification->addProductItemId('15968421');
+$shopCertification->addProductItemId('814687');
+```
+And finally send request to log the order:
 
 ```php
-$overeno->setOrderId(123456);
+$shopCertification->logOrder();
 ```
-  
-Send the request:
-
-```php
-$overeno->send();
-```
-    
-[View all examples](https://github.com/heureka/heureka-overeno-php-api/tree/master/examples)
