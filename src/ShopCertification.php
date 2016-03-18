@@ -3,7 +3,6 @@
 namespace Heureka;
 
 use Heureka\ShopCertification\ApiEndpoint;
-use Heureka\ShopCertification\CurlNotInstalledException;
 use Heureka\ShopCertification\InvalidArgumentException;
 use Heureka\ShopCertification\IRequester;
 use Heureka\ShopCertification\Response;
@@ -59,8 +58,6 @@ class ShopCertification
      * @param string          $apiKey
      * @param array           $options
      * @param IRequester|null $requester
-     *
-     * @throws CurlNotInstalledException
      */
     public function __construct($apiKey, array $options = [], IRequester $requester = null)
     {
@@ -74,13 +71,11 @@ class ShopCertification
         $apiEndpoint = new ApiEndpoint($this->options['service']);
 
         if ($requester === null) {
-            if (!function_exists('curl_version')) {
-                throw new CurlNotInstalledException(
-                    'cURL extension is not installed. Either install the cURL extension or provide your own requester.'
-                );
+            if (function_exists('curl_version')) {
+                $requester = new ShopCertification\CurlRequester();
+            } else {
+                $requester = new ShopCertification\PhpRequester();
             }
-
-            $requester = new ShopCertification\CurlRequester();
         }
 
         $requester->setApiEndpoint($apiEndpoint);
