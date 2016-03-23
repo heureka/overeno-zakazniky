@@ -21,6 +21,9 @@ class Overeno
     /** @var IRequester */
     private $requester;
 
+    /** @var int */
+    private $orderId;
+
     /** @var string */
     private $email;
 
