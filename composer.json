@@ -1,6 +1,6 @@
 {
-    "name": "heureka/overenozakazniky",
-    "description": "Heureka 'Ověřeno zákazníky' service API",
+    "name": "heureka/overeno-zakazniky",
+    "description": "Heureka 'Ověřeno zákazníky' (ShopCertification) service API implementation",
     "authors": [
         {
             "name": "Heureka.cz",
@@ -10,8 +10,11 @@
     "require": {
         "php": ">=5.4.0"
     },
+    "suggest": {
+        "ext-curl": "Simplifies the library usage (you don't have to provide your own requester)"
+    },
     "require-dev": {
-        "phpunit/phpunit": "~4.4.0",
+        "phpunit/phpunit": "~4.8.0",
         "mockery/mockery": "~0.9.4"
     },
     "autoload": {
