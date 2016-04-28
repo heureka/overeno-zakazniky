@@ -54,7 +54,7 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
 
         $requester->shouldReceive('request')
             ->once()
-            ->with(IRequester::ACTION_LOG_ORDER, $data)
+            ->with(IRequester::ACTION_LOG_ORDER, Mockery::mustBe($data))
             ->andReturn($response);
 
         $shopCertification = new ShopCertification($apiKey, [], $requester);
@@ -87,7 +87,7 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
 
         $requester->shouldReceive('request')
             ->once()
-            ->with(IRequester::ACTION_LOG_ORDER, $data)
+            ->with(IRequester::ACTION_LOG_ORDER, Mockery::mustBe($data))
             ->andReturn($response);
 
         $shopCertification = new ShopCertification($apiKey, [], $requester);
@@ -133,7 +133,7 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
 
         $requester->shouldReceive('request')
             ->once()
-            ->with(IRequester::ACTION_LOG_ORDER, $data)
+            ->with(IRequester::ACTION_LOG_ORDER, Mockery::mustBe($data))
             ->andReturn($response);
 
         $shopCertification = new ShopCertification($apiKey, [], $requester);
@@ -168,7 +168,7 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
 
         $requester->shouldReceive('request')
             ->once()
-            ->with(IRequester::ACTION_LOG_ORDER, $data)
+            ->with(IRequester::ACTION_LOG_ORDER, Mockery::mustBe($data))
             ->andReturn($response);
 
         $shopCertification = new ShopCertification($apiKey, [], $requester);

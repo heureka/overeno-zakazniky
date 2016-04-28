@@ -125,13 +125,13 @@ class ShopCertification
     {
         $productItemId = (string)$productItemId;
 
-        if (isset($this->productItemIds[$productItemId])) {
+        if (array_search($productItemId, $this->productItemIds) !== false) {
             throw new DuplicateProductItemIdException(
                 'The productItemId "%s" was already added. Please check the implementation.'
             );
         }
 
-        $this->productItemIds[$productItemId] = true;
+        $this->productItemIds[] = $productItemId;
 
         return $this;
     }
@@ -160,7 +160,7 @@ class ShopCertification
             $data['orderId'] = $this->orderId;
         }
 
-        $data['productItemIds'] = array_keys($this->productItemIds);
+        $data['productItemIds'] = $this->productItemIds;
 
         $result = $this->requester->request(IRequester::ACTION_LOG_ORDER, $data);
         if ($result->code !== 200) {
