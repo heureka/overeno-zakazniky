@@ -1,6 +1,7 @@
 {
     "name": "heureka/overeno-zakazniky",
     "description": "Heureka 'Ověřeno zákazníky' (ShopCertification) service API implementation",
+    "license": "MIT",
     "authors": [
         {
             "name": "Heureka.cz",
