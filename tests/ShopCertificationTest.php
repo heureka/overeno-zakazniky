@@ -79,10 +79,6 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
         $data = [
             'apiKey'         => $apiKey = 'xxxxxxxxxx',
             'email'          => $email = 'john@doe.com',
-            'productItemIds' => [
-                $product1 = 'ab12345',
-                $product2 = '123459',
-            ],
         ];
 
         $requester->shouldReceive('request')
@@ -92,8 +88,6 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
 
         $shopCertification = new ShopCertification($apiKey, [], $requester);
         $shopCertification->setEmail($email);
-        $shopCertification->addProductItemId($product1);
-        $shopCertification->addProductItemId($product2);
         $shopCertification->logOrder();
     }
 

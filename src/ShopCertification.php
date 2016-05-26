@@ -160,7 +160,9 @@ class ShopCertification
             $data['orderId'] = $this->orderId;
         }
 
-        $data['productItemIds'] = $this->productItemIds;
+        if ($this->productItemIds) {
+            $data['productItemIds'] = $this->productItemIds;
+        }
 
         $result = $this->requester->request(IRequester::ACTION_LOG_ORDER, $data);
         if ($result->code !== 200) {
