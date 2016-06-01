@@ -16,7 +16,7 @@ Formát URL
 ----------
 
 URL požadavku má následující formát:
-`https://api.heureka.cz/shop-certification/v2/[ACTION]`
+`https://api.heureka.[TLD]/shop-certification/v2/[ACTION]`
 
 **Pozor:** K dispozici jsou dvě URL adresy API služby Ověřeno zákazníky - jedna pro českou Heureku a druhá pro
 slovenskou. Liší se pouze rozdílnou doménou prvního řádu (cz/sk) v URL adrese API: `https://api.heureka.cz` /
@@ -26,6 +26,8 @@ Ujistěte se, že používáte správnou URL jinak API pošle odpověď, že zad
 jsou rozdílné pro českou a slovenskou Heureku.
 
 V současné době API podporuje pouze jednu [ACTION] což je `order/log` (uložení objednávky).
+
+[TLD] je buď `cz` nebo `sk` v závislosti na tom jestli chcete zaznamenat objednávku na české nebo slovenské Heurece.
 
 Popis předávaných dat
 ---------------------

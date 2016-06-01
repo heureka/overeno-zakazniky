@@ -19,7 +19,7 @@ URL format
 ----------
 
 Request URL has the following format:
-`https://api.heureka.cz/shop-certification/v2/[ACTION]`
+`https://api.heureka.[TLD]/shop-certification/v2/[ACTION]`
 
 **Please note:** There are two available API endpoints. One is for Czech Heureka and the other one for Slovak Heureka.
 The only difference is in different top-level domain name (cz/sk) in the API endpoint URL, i.e. `https://api.heureka.cz` /
@@ -28,7 +28,9 @@ The only difference is in different top-level domain name (cz/sk) in the API end
 Make sure you are using the correct API endpoint URL, otherwise
 you can get an error stating that you have an invalid API key, because keys are different for Czech and Slovak Heureka.
 
-The only [ACTION] available at this time is `order/log`
+The only [ACTION] available at this time is `order/log`.
+
+[TLD] is `cz` or `sk` depending whether you want to use Czech or Slovak Heureka.
 
 Data payload fields
 -------------------
