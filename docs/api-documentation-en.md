@@ -1,5 +1,5 @@
 Heureka 'Ověřeno zákazníky' (ShopCertification) API Documentation
-============================================
+=================================================================
 
 Documentation for [Heureka Ověřeno zákazníky](http://overeno.heureka.cz/) (ShopCertification) API
 service endpoint.
@@ -15,7 +15,7 @@ URL format
 ----------
 
 Request URL has the following format:
-```https://api.heureka.cz/shop-certification/v2/[ACTION]```
+`https://api.heureka.cz/shop-certification/v2/[ACTION]`
 
 **Please note:** There are two available API endpoints. One is for Czech Heureka and the other one for Slovak Heureka
 . The only difference is in different top-level domain name (cz/sk) in the API endpoint URL, i.e. `https://api.heureka.cz` /
@@ -27,7 +27,7 @@ you can get an error stating that you have an invalid API key, because keys are 
 The only [ACTION] available at this time is `order/log`
 
 Data payload fields
---------------
+-------------------
 
 To be able to report an e-shop order to the Heureka ShopCertification service, you have to provide all the
 required information in the form of JSON-serialized data payload. Supported fields are following:
@@ -43,7 +43,7 @@ Example
 -------
 
 Following URL is used to report the e-shop order:
-```https://api.heureka.cz/shop-certification/v2/order/log```
+`https://api.heureka.cz/shop-certification/v2/order/log`
 
 JSON-serialized POST payload has to be in the following form:
 ```json
@@ -81,7 +81,7 @@ API response:
 }
 ```
 
-Possible solution: Make sure, your JSON payload is valid.
+Possible solution: Make sure your JSON payload is valid.
 
 API response:
 
@@ -107,3 +107,7 @@ API response:
 ```
 
 Possible solution: Make sure your HTTP POST request header has **Content-type** field set to **application/json** or **application/json;charset=utf-8**.
+
+Footnote
+--------
+In case of any other implementation problems feel free to contact support at [podpora@heureka.cz](podpora@heureka.cz)
