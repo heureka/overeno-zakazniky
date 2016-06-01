@@ -4,6 +4,10 @@ Heureka 'Ověřeno zákazníky' (ShopCertification) API Documentation
 Documentation for [Heureka Ověřeno zákazníky](http://overeno.heureka.cz/) (ShopCertification) API
 service endpoint.
 
+**Note:** This is technical API description for developers of non-PHP client-side libraries.
+If your project is PHP friendly, you can grab and use our ready-made PHP library
+[here](https://github.com/heureka/overeno-zakazniky).
+
 Basics
 ------
 
@@ -17,8 +21,8 @@ URL format
 Request URL has the following format:
 `https://api.heureka.cz/shop-certification/v2/[ACTION]`
 
-**Please note:** There are two available API endpoints. One is for Czech Heureka and the other one for Slovak Heureka
-. The only difference is in different top-level domain name (cz/sk) in the API endpoint URL, i.e. `https://api.heureka.cz` /
+**Please note:** There are two available API endpoints. One is for Czech Heureka and the other one for Slovak Heureka.
+The only difference is in different top-level domain name (cz/sk) in the API endpoint URL, i.e. `https://api.heureka.cz` /
 `https://api.heureka.sk`
 
 Make sure you are using the correct API endpoint URL, otherwise

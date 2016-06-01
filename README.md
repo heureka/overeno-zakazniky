@@ -3,7 +3,8 @@ Heureka 'Ověřeno zákazníky' PHP API
 
 [Heureka Ověřeno zákazníky](http://overeno.heureka.cz/) (ShopCertification) service API client implementation for PHP.
 
-Note: For **non-PHP** implementations check the raw API documentation in the `docs` folder.
+Note: For **non-PHP** implementations check the API documentation in the
+[docs](docs) folder.
 
 Examples
 --------

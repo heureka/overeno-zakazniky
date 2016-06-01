@@ -3,6 +3,9 @@ Heureka 'Ověřeno zákazníky' API Dokumentace
 
 Dokumentace pro API služby [Heureka Ověřeno zákazníky](http://overeno.heureka.cz/).
 
+**Poznámka:** Toto je technický popis API pro vývojáře klientských knihoven pro jiné programovací jazyky než je PHP.
+Hotová klientská knihovna pro PHP je k dispozici [zde](https://github.com/heureka/overeno-zakazniky).
+
 Základní popis
 --------------
 
@@ -35,10 +38,10 @@ Toto jsou podporovaná data, která API služba umí zpracovat:
 
 |      Pole      |  Typ   | Vyžadováno |                        Poznámka                      |
 |:--------------:|:------:|:----------:|:----------------------------------------------------:|
-| apiKey         | string | ano        | you can obtain this in heureka e-shop administration |
-| email          | string | ano        | e-mail of the customer who made the order            |
-| orderId        | int    | ne         | unique identification of an order in your e-shop     |
-| productItemIds | array  | ne         | ITEM_IDs of purchased products from your XML feed    |
+| apiKey         | string | ano        | API klíč získáte po přihlášení v e-shop administraci |
+| email          | string | ano        | e-mail zákazníka, který provedl objednávku           |
+| orderId        | int    | ne         | unikátní identifikátor objednávky ve vašem e-shopu   |
+| productItemIds | array  | ne         | ITEM_ID produktů které předáváte v XML feedu         |
 
 Příklad
 -------
@@ -46,7 +49,7 @@ Příklad
 Následující URL je použita pro zaznamenání objednávky na straně Heureky (CZ heureka):
 `https://api.heureka.cz/shop-certification/v2/order/log`
 
-JSON-serializovaná data která je nutné poslat společně s POST požadavkem musí mít tuto formu:
+JSON-serializovaná data, která je nutné poslat společně s POST požadavkem musí mít tuto formu:
 ```json
 {
   "apiKey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
