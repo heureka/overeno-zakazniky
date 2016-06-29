@@ -18,9 +18,9 @@ try {
     // Set order ID - it helps you track your customers' orders in Heureka shop administration.
     $shopCertification->setOrderId(1597884);
 
-    // Add products using ITEM_ID (your products ID) - you HAVE TO put in all the products which the customer ordered.
+    // Add products using ITEM_ID (your products ID)
     $shopCertification->addProductItemId('165899412');
-    $shopCertification->addProductItemId('998884614');
+    $shopCertification->addProductItemId('abc8884614');
 
     // And finally send the order to our service.
     $shopCertification->logOrder();
