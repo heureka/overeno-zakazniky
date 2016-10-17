@@ -34,30 +34,29 @@ class PhpRequester implements IRequester
                 throw new RequesterException('Failed to serialize data into JSON. Data: ' . var_export($data, true));
             }
 
-            $urlParts = parse_url($this->endpoint->getUrl() . $action);
-            $scheme = isset($urlParts['scheme']) && $urlParts['scheme'] === 'https' ? 'ssl://' : '';
-            $port = isset($urlParts['port']) ? $urlParts['port'] : ($urlParts['scheme'] === 'https' ? 443 : 80);
-            $fp = fsockopen($scheme . $urlParts['host'], $port, $errorNo, $errorMessage);
+            $options = [
+                'http' => [
+                    'method' => "POST",
+                    'header' => "Content-Type: application/json\r\n" . sprintf("Content-Length: %d\r\n", strlen($json)),
+                    'content' => $json,
+                    'ignore_errors' => true
+                ]
+            ];
+
+            $context = stream_context_create($options);
+            $fp = fopen($this->endpoint->getUrl() . $action, 'r', false, $context);
+
             if ($fp === false) {
-                throw new RequesterException(sprintf('fsockopen failed: [%d] %s', $errorNo, $errorMessage));
+                throw new RequesterException(sprintf('fopen failed'));
             }
 
-            $path = $urlParts['path'] . (isset($urlParts['query']) ? '?' . $urlParts['query'] : '');
-            fwrite($fp, sprintf("POST %s HTTP/1.1\r\n", $path));
-            fwrite($fp, sprintf("Host: %s\r\n", $urlParts['host']));
-            fwrite($fp, "Content-Type: application/json\r\n");
-            fwrite($fp, sprintf("Content-Length: %d\r\n", strlen($json)));
-            fwrite($fp, "Connection: close\r\n");
-            fwrite($fp, "\r\n");
-            fwrite($fp, $json);
-
-            $response = stream_get_contents($fp);
+            $result = stream_get_contents($fp);
             fclose($fp);
 
-            list($headers, $result) = explode("\r\n\r\n", $response, 2);
-            list($statusHeader, $_) = explode("\r\n", $headers, 2);
-            list($version, $httpCode, $phrase) = explode(' ', $statusHeader, 3);
-            $httpCode = (int)$httpCode;
+            $matches = [];
+            preg_match('/\"code\": (\d+),/', $result, $matches);
+            $httpCode = (int)$matches[1];
+
         } catch (\Exception $e) {
             $result = empty($result) ? '' :  ', result: ' . $result;
             $message = 'An error occurred during the transfer' . $result . "\n\n"
