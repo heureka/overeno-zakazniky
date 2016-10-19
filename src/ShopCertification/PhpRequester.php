@@ -36,27 +36,34 @@ class PhpRequester implements IRequester
 
             $options = [
                 'http' => [
-                    'method' => "POST",
-                    'header' => "Content-Type: application/json\r\n" . sprintf("Content-Length: %d\r\n", strlen($json)),
-                    'content' => $json,
+                    'method'        => 'POST',
+                    'header'        => "Content-Type: application/json\r\n" . sprintf(
+                            "Content-Length: %d\r\n",
+                            strlen($json)
+                        ),
+                    'content'       => $json,
                     'ignore_errors' => true
                 ]
             ];
 
             $context = stream_context_create($options);
-            $fp = fopen($this->endpoint->getUrl() . $action, 'r', false, $context);
+            $fp = @fopen($this->endpoint->getUrl() . $action, 'r', false, $context);
 
             if ($fp === false) {
-                throw new RequesterException(sprintf('fopen failed'));
+                $error = error_get_last();
+                throw new RequesterException(sprintf('fopen failed: [%d] %s', $error['type'], $error['message']));
             }
 
             $result = stream_get_contents($fp);
+            $metaData = stream_get_meta_data($fp);
             fclose($fp);
 
-            $matches = [];
-            preg_match('/\"code\": (\d+),/', $result, $matches);
-            $httpCode = (int)$matches[1];
+            $statusHeader = $metaData['wrapper_data'][0];
+            list($version, $httpCode, $phrase) = explode(' ', $statusHeader, 3);
+            $httpCode = (int)$httpCode;
 
+        } catch (RequesterException $e) {
+            throw new RequesterException($e->getMessage(), null, $e);
         } catch (\Exception $e) {
             $result = empty($result) ? '' :  ', result: ' . $result;
             $message = 'An error occurred during the transfer' . $result . "\n\n"
