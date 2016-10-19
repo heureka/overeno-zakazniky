@@ -55,15 +55,15 @@ class PhpRequester implements IRequester
             }
 
             $result = stream_get_contents($fp);
-            $metaData = stream_get_meta_data($fp);
+            $metadata = stream_get_meta_data($fp);
             fclose($fp);
 
-            $statusHeader = $metaData['wrapper_data'][0];
+            $statusHeader = $metadata['wrapper_data'][0];
             list($version, $httpCode, $phrase) = explode(' ', $statusHeader, 3);
             $httpCode = (int)$httpCode;
 
         } catch (RequesterException $e) {
-            throw new RequesterException($e->getMessage(), null, $e);
+            throw $e;
         } catch (\Exception $e) {
             $result = empty($result) ? '' :  ', result: ' . $result;
             $message = 'An error occurred during the transfer' . $result . "\n\n"
