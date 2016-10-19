@@ -58,9 +58,14 @@ class PhpRequester implements IRequester
             $metadata = stream_get_meta_data($fp);
             fclose($fp);
 
-            $statusHeader = $metadata['wrapper_data'][0];
-            list($version, $httpCode, $phrase) = explode(' ', $statusHeader, 3);
-            $httpCode = (int)$httpCode;
+            $httpCode = 0;
+            foreach ($metadata['wrapper_data'] as $header) {
+                if (strpos($header, 'HTTP') === 0) {
+                    list($version, $httpCode, $phrase) = explode(' ', $header, 3);
+                    $httpCode = (int)$httpCode;
+                    break;
+                }
+            }
 
         } catch (RequesterException $e) {
             throw $e;
