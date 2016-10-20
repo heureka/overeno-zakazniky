@@ -52,6 +52,8 @@ class CurlRequester implements IRequester
 
             $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
             curl_close($curl);
+        } catch (RequesterException $e) {
+            throw $e;
         } catch (\Exception $e) {
             $result = empty($result) ? '' :  ', result: ' . $result;
             throw new RequesterException('An error occurred during the transfer' . $result, null, $e);
