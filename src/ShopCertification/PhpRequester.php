@@ -2,8 +2,6 @@
 
 namespace Heureka\ShopCertification;
 
-use Heureka\ShopCertification;
-
 /**
  * @author Jakub Chábek <jakub.chabek@heureka.cz>
  */
