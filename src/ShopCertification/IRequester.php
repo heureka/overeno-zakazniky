@@ -21,7 +21,7 @@ interface IRequester
      * @param array  $data
      *
      * @return Response
-     * @throws RequesterException
+     * @throws RequesterException A RequesterException must be thrown if response is invalid or has code other than 200
      */
     public function request($action, array $data);
 

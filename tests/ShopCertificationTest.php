@@ -108,42 +108,6 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
         $shopCertification->logOrder();
     }
 
-    public function testLogOrderFailure()
-    {
-        $requester = Mockery::mock('\Heureka\ShopCertification\IRequester');
-        $requester->shouldReceive('setApiEndpoint')
-            ->once()
-            ->with(Mockery::type('\Heureka\ShopCertification\ApiEndpoint'));
-
-        $response = Mockery::mock('\Heureka\ShopCertification\Response');
-        $response->code = 500;
-        $response->message = 'server-error';
-
-        $data = [
-            'apiKey'         => $apiKey = 'xxxxxxxxxx',
-            'email'          => $email = 'john@doe.com',
-            'orderId'        => $orderId = 12345,
-            'productItemIds' => [
-                $product1 = 'ab12345',
-                $product2 = '123459',
-            ],
-        ];
-
-        $requester->shouldReceive('request')
-            ->once()
-            ->with(IRequester::ACTION_LOG_ORDER, Mockery::mustBe($data))
-            ->andReturn($response);
-
-        $shopCertification = new ShopCertification($apiKey, [], $requester);
-        $shopCertification->setEmail($email);
-        $shopCertification->setOrderId($orderId);
-        $shopCertification->addProductItemId($product1);
-        $shopCertification->addProductItemId($product2);
-
-        $this->setExpectedException('\Heureka\ShopCertification\Exception');
-        $shopCertification->logOrder();
-    }
-
     public function testLogOrderDoubleSend()
     {
         $requester = Mockery::mock('\Heureka\ShopCertification\IRequester');
