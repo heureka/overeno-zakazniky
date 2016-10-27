@@ -24,6 +24,11 @@ class Response
     public $description;
 
     /**
+     * @var string|null
+     */
+    public $resourceId;
+
+    /**
      * @param string $json
      *
      * @throws JsonException

@@ -26,10 +26,17 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     public function providerConstruct()
     {
         return [
-            ['{"code":200,"message":"ok"}', ['code' => 200, 'message' => 'ok', 'description' => null]],
             [
-                '{"code":404,"message":"not-found","description":"Resource does not exist."}',
-                ['code' => 404, 'message' => 'not-found', 'description' => 'Resource does not exist.']
+                '{"code":200,"message":"ok"}',
+                ['code' => 200, 'message' => 'ok', 'description' => null, 'resourceId' => null],
+            ],
+            [
+                '{"code":404,"message":"not-found","description":"Resource does not exist.","resourceId":"sf812as12"}',
+                ['code'        => 404,
+                 'message'     => 'not-found',
+                 'description' => 'Resource does not exist.',
+                 'resourceId'  => 'sf812as12',
+                ],
             ],
         ];
     }
