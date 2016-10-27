@@ -170,6 +170,8 @@ class ShopCertification
         }
 
         $this->orderSent = true;
+
+        return $result;
     }
 
 }

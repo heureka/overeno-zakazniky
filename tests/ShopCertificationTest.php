@@ -62,7 +62,9 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
         $shopCertification->setOrderId($orderId);
         $shopCertification->addProductItemId($product1);
         $shopCertification->addProductItemId($product2);
-        $shopCertification->logOrder();
+        $result = $shopCertification->logOrder();
+
+        $this->assertInstanceOf('\Heureka\ShopCertification\Response', $result);
     }
 
     public function testLogOrderSuccessWithoutOptionalFields()
@@ -88,7 +90,9 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
 
         $shopCertification = new ShopCertification($apiKey, [], $requester);
         $shopCertification->setEmail($email);
-        $shopCertification->logOrder();
+        $result = $shopCertification->logOrder();
+
+        $this->assertInstanceOf('\Heureka\ShopCertification\Response', $result);
     }
 
     public function testLogOrderMissingEmail()
