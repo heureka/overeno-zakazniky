@@ -165,9 +165,6 @@ class ShopCertification
         }
 
         $result = $this->requester->request(IRequester::ACTION_LOG_ORDER, $data);
-        if ($result->code !== 200) {
-            throw new ShopCertification\Exception("Unexpected response:\n" . print_r($result, true));
-        }
 
         $this->orderSent = true;
 
