@@ -153,18 +153,18 @@ class ShopCertification
             throw new ShopCertification\MissingInformationException("Customer email address isn't set and is mandatory.");
         }
 
-        $data['apiKey'] = $this->apiKey;
-        $data['email'] = $this->email;
+        $postData['apiKey'] = $this->apiKey;
+        $postData['email'] = $this->email;
 
         if ($this->orderId) {
-            $data['orderId'] = $this->orderId;
+            $postData['orderId'] = $this->orderId;
         }
 
         if ($this->productItemIds) {
-            $data['productItemIds'] = $this->productItemIds;
+            $postData['productItemIds'] = $this->productItemIds;
         }
 
-        $result = $this->requester->request(IRequester::ACTION_LOG_ORDER, $data);
+        $result = $this->requester->request(IRequester::ACTION_LOG_ORDER, [], $postData);
 
         $this->orderSent = true;
 
