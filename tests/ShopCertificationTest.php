@@ -42,7 +42,7 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
         $response->code = 200;
         $response->message = 'ok';
 
-        $data = [
+        $postData = [
             'apiKey'         => $apiKey = 'xxxxxxxxxx',
             'email'          => $email = 'john@doe.com',
             'orderId'        => $orderId = 12345,
@@ -54,7 +54,7 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
 
         $requester->shouldReceive('request')
             ->once()
-            ->with(IRequester::ACTION_LOG_ORDER, Mockery::mustBe($data))
+            ->with(IRequester::ACTION_LOG_ORDER, Mockery::mustBe([]), Mockery::mustBe($postData))
             ->andReturn($response);
 
         $shopCertification = new ShopCertification($apiKey, [], $requester);
@@ -78,14 +78,14 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
         $response->code = 200;
         $response->message = 'ok';
 
-        $data = [
+        $postData = [
             'apiKey'         => $apiKey = 'xxxxxxxxxx',
             'email'          => $email = 'john@doe.com',
         ];
 
         $requester->shouldReceive('request')
             ->once()
-            ->with(IRequester::ACTION_LOG_ORDER, Mockery::mustBe($data))
+            ->with(IRequester::ACTION_LOG_ORDER, Mockery::mustBe([]), Mockery::mustBe($postData))
             ->andReturn($response);
 
         $shopCertification = new ShopCertification($apiKey, [], $requester);
@@ -119,7 +119,7 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
         $response->code = 200;
         $response->message = 'ok';
 
-        $data = [
+        $postData = [
             'apiKey'         => $apiKey = 'xxxxxxxxxx',
             'email'          => $email = 'john@doe.com',
             'productItemIds' => [
@@ -130,7 +130,7 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
 
         $requester->shouldReceive('request')
             ->once()
-            ->with(IRequester::ACTION_LOG_ORDER, Mockery::mustBe($data))
+            ->with(IRequester::ACTION_LOG_ORDER, Mockery::mustBe([]), Mockery::mustBe($postData))
             ->andReturn($response);
 
         $shopCertification = new ShopCertification($apiKey, [], $requester);

@@ -24,29 +24,37 @@ class PhpRequester implements IRequester
     /**
      * @inheritdoc
      */
-    public function request($action, array $data)
+    public function request($action, array $getData = [], array $postData = [])
     {
         try {
-            $json = json_encode($data, JSON_PRETTY_PRINT);
-            if ($json === false) {
-                throw new RequesterException('Failed to serialize data into JSON. Data: ' . var_export($data, true));
-            }
-
             $options = [
                 'http' => [
-                    'method'        => 'POST',
-                    'header'        => "Content-Type: application/json\r\n" . sprintf(
-                            "Content-Length: %d\r\n",
-                            strlen($json)
-                        ),
-                    'content'       => $json,
-                    'ignore_errors' => true
+                    'method'        => 'GET',
+                    'ignore_errors' => true,
                 ]
             ];
 
-            $context = stream_context_create($options);
-            $fp = @fopen($this->endpoint->getUrl() . $action, 'r', false, $context);
+            if ($postData) {
+                $json = json_encode($postData, JSON_PRETTY_PRINT);
+                if ($json === false) {
+                    throw new RequesterException(
+                        'Failed to serialize data into JSON. Data: ' . var_export($postData, true)
+                    );
+                }
 
+                $options['http'] = $options['http'] + [
+                    'method'  => 'POST',
+                    'header'  => sprintf(
+                        "Content-Type: application/json\r\nContent-Length: %d\r\n",
+                        strlen($json)
+                    ),
+                    'content' => $json,
+                ];
+            }
+
+            $getParams = $getData ? '?' . http_build_query($getData) : '';
+            $context = stream_context_create($options);
+            $fp = @fopen($this->endpoint->getUrl() . $action . $getParams, 'r', false, $context); // @ intentionally
             if ($fp === false) {
                 $error = error_get_last();
                 throw new RequesterException(sprintf('fopen failed: [%d] %s', $error['type'], $error['message']));
