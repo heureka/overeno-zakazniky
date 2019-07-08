@@ -8,5 +8,10 @@ php:
   - 7.2
   - 7.3
   - hhvm
+  - nightly
+matrix:
+  allow_failures:
+    - php: hhvm
+    - php: nightly
 script:
   - make test
