@@ -127,7 +127,7 @@ class ShopCertification
 
         if (array_search($productItemId, $this->productItemIds) !== false) {
             throw new DuplicateProductItemIdException(
-                'The productItemId "%s" was already added. Please check the implementation.'
+                sprintf('The productItemId "%s" was already added. Please check the implementation.', $productItemId)
             );
         }
 
