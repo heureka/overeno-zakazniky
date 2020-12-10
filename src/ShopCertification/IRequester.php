@@ -27,5 +27,3 @@ interface IRequester
     public function request($action, array $getData = [], array $postData = []);
 
 }
-
-class RequesterException extends Exception {}
