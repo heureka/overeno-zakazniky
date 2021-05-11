@@ -10,10 +10,10 @@ require_once __DIR__ . '/../vendor/autoload.php';
 /**
  * @author Jakub Chábek <jakub.chabek@heureka.cz>
  */
-class ShopCertificationTest extends \PHPUnit_Framework_TestCase
+class ShopCertificationTest extends \PHPUnit\Framework\TestCase
 {
 
-    public function tearDown()
+    public function tearDown(): void
     {
         Mockery::close();
     }
@@ -27,7 +27,7 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
 
         $shopCertification = new ShopCertification('xxxxxxxx', [], $requester);
 
-        $this->setExpectedException('\Heureka\ShopCertification\InvalidArgumentException');
+        $this->expectException('\Heureka\ShopCertification\InvalidArgumentException');
         $shopCertification->setOrderId('abcd');
     }
 
@@ -104,7 +104,7 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
 
         $shopCertification = new ShopCertification('xxxxxxxxxx', [], $requester);
 
-        $this->setExpectedException('\Heureka\ShopCertification\MissingInformationException');
+        $this->expectException('\Heureka\ShopCertification\MissingInformationException');
         $shopCertification->logOrder();
     }
 
@@ -139,7 +139,7 @@ class ShopCertificationTest extends \PHPUnit_Framework_TestCase
         $shopCertification->addProductItemId($product2);
         $shopCertification->logOrder();
 
-        $this->setExpectedException('\Heureka\ShopCertification\Exception');
+        $this->expectException('\Heureka\ShopCertification\Exception');
         $shopCertification->logOrder();
     }
 

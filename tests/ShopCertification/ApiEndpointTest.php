@@ -7,7 +7,7 @@ use Heureka\ShopCertification;
 /**
  * @author Jakub Chábek <jakub.chabek@heureka.cz>
  */
-class ApiEndpointTest extends \PHPUnit_Framework_TestCase
+class ApiEndpointTest extends \PHPUnit\Framework\TestCase
 {
 
     public function testGetEndpoint()
@@ -18,7 +18,7 @@ class ApiEndpointTest extends \PHPUnit_Framework_TestCase
         $apiEndpoint = new ApiEndpoint(ShopCertification::HEUREKA_SK);
         $this->assertSame(ApiEndpoint::API_ENDPOINT_SK, $apiEndpoint->getUrl());
 
-        $this->setExpectedException('Heureka\ShopCertification\UnknownServiceException');
+        $this->expectException('Heureka\ShopCertification\UnknownServiceException');
         new ApiEndpoint(15);
     }
 
