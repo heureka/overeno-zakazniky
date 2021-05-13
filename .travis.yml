@@ -1,17 +1,7 @@
 language: php
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
-  - 7.1
-  - 7.2
   - 7.3
-  - hhvm
-  - nightly
-matrix:
-  allow_failures:
-    - php: hhvm
-    - php: nightly
+  - 7.4
+  - 8.0
 script:
   - make test

@@ -5,7 +5,7 @@ namespace Heureka\ShopCertification;
 /**
  * @author Jakub Chábek <jakub.chabek@heureka.cz>
  */
-class ResponseTest extends \PHPUnit_Framework_TestCase
+class ResponseTest extends \PHPUnit\Framework\TestCase
 {
 
     /**
@@ -43,7 +43,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructWithMissingFields()
     {
-        $this->setExpectedException('Heureka\ShopCertification\InvalidResponseException');
+        $this->expectException('Heureka\ShopCertification\InvalidResponseException');
         new Response('{"message":"There was an error"}');
     }
 
@@ -54,7 +54,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructWithInvalidJsonResponse($json)
     {
-        $this->setExpectedException('Heureka\ShopCertification\JsonException');
+        $this->expectException('Heureka\ShopCertification\JsonException');
         new Response($json);
     }
 
