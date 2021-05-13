@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=7.3"
     },
     "suggest": {
         "ext-curl": "Simplifies the library usage (you don't have to provide your own requester)"
