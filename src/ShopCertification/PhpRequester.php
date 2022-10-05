@@ -49,6 +49,7 @@ class PhpRequester implements IRequester
                         strlen($json)
                     ),
                     'content' => $json,
+                    'timeout' => 5,
                 ];
             }
 

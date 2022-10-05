@@ -30,6 +30,7 @@ class CurlRequester implements IRequester
         try {
             $curlOptions = [
                 CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_TIMEOUT => 5,
             ];
 
             if ($postData) {
