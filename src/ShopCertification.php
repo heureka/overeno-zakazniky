@@ -39,7 +39,7 @@ class ShopCertification
     private $email;
 
     /**
-     * @var string
+     * @var int
      */
     private $orderId;
 
