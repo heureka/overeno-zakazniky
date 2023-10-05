@@ -39,7 +39,7 @@ class ShopCertification
     private $email;
 
     /**
-     * @var string
+     * @var int|string
      */
     private $orderId;
 
@@ -97,16 +97,16 @@ class ShopCertification
     }
 
     /**
-     * @param int $orderId ID of the customer's order
+     * @param int|string $orderId ID of the customer's order
      *
      * @return self
      * @throws InvalidArgumentException
      */
     public function setOrderId($orderId)
     {
-        if (!is_int($orderId)) {
+        if (strlen($orderId) > 255) {
             throw new InvalidArgumentException(
-                sprintf('OrderId must be an integer, "%s" given.', print_r($orderId, true))
+                sprintf('OrderId must be a string limited to 255 characters, "%s" given.', print_r($orderId, true))
             );
         }
 

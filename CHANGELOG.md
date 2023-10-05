@@ -1,4 +1,7 @@
 # Version History
+## v4.0.2
+- Allow to send OrderId as string
+
 ## v4.0.1
 - Add timeout to requests
 

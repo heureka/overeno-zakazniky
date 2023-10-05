@@ -42,7 +42,7 @@ Toto jsou podporovaná data, která API služba umí zpracovat:
 |:--------------:|:------:|:----------:|:----------------------------------------------------:|
 | apiKey         | string | ano        | API klíč získáte po přihlášení v e-shop administraci |
 | email          | string | ano        | e-mail zákazníka, který provedl objednávku           |
-| orderId        | int    | ne         | unikátní identifikátor objednávky ve vašem e-shopu   |
+| orderId        | string | ne         | unikátní identifikátor objednávky ve vašem e-shopu   |
 | productItemIds | array  | ne         | ITEM_ID produktů které předáváte v XML feedu         |
 
 Příklad

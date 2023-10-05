@@ -28,7 +28,7 @@ class ShopCertificationTest extends \PHPUnit\Framework\TestCase
         $shopCertification = new ShopCertification('xxxxxxxx', [], $requester);
 
         $this->expectException('\Heureka\ShopCertification\InvalidArgumentException');
-        $shopCertification->setOrderId('abcd');
+        $shopCertification->setOrderId(str_repeat('x', 256));
     }
 
     public function testLogOrderSuccess()
