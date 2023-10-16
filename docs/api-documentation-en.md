@@ -42,7 +42,7 @@ required information in the form of JSON-serialized data payload. Supported fiel
 |:--------------:|:------:|:--------:|:----------------------------------------------------:|
 | apiKey         | string | yes      | you can obtain this in heureka e-shop administration |
 | email          | string | yes      | e-mail of the customer who made the order            |
-| orderId        | int    | no       | unique identification of an order in your e-shop     |
+| orderId        | string | no       | unique identification of an order in your e-shop     |
 | productItemIds | array  | no       | ITEM_IDs of purchased products from your XML feed    |
 
 Example
